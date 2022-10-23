@@ -12,24 +12,26 @@ app.use(express.urlencoded(
 // https://swagger.io/specification/#infoObject
 const swaggerOptions = {
     swaggerDefinition: {
+        openapi: "3.0.3",
         info: {
-            openapi: "3.0.3",
-            title: 'Film Store API',
-            description: 'API for Get Manual QA Course',
+            title: "Film Store API",
+            description: "API for Get Manual QA Course",
             version: "1.0",
             contact: {
-                name: 'Igor Gromov',
+                name: "Igor Gromov",
                 url: "http://www.linkedin.com/in/igor-gromov-15043883",
                 email: "gromov.i@oulook.com"
             },
-            servers: ['http://localhost:8080'],
-            components: {
-                schemas: {
-                    invoice: {
-                        $ref: "../models/components/invoice.xml#/Invoice"
-                    }
+            servers: [
+                {
+                    url: "http://localhost:8080",
+                    description: "Test Server"
+                },
+                {
+                    url: "http://antivariant.com",
+                    description: "Production server"    
                 }
-            }
+            ]
         }
     },
     apis: ["./routes/*.js"]
@@ -37,6 +39,9 @@ const swaggerOptions = {
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+
+
 
 const config = require('./config');
 
