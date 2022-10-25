@@ -42,6 +42,8 @@ CREATE TABLE `invoice` (
 --
 
 LOCK TABLES `invoice` WRITE;
+
+DELIMITER //
 /*!40000 ALTER TABLE `invoice` DISABLE KEYS */;
 /*!40000 ALTER TABLE `invoice` ENABLE KEYS */;
 CREATE TRIGGER `new_invoice_number` BEFORE INSERT ON `invoice`
@@ -50,7 +52,10 @@ CREATE TRIGGER `new_invoice_number` BEFORE INSERT ON `invoice`
   SELECT max(id) INTO @new_id FROM `invoice`;
   set @new_id = LPAD(COALESCE(@new_id, 0)+1,7,'0');
   SET NEW.DOCNUMBER = concat('FS-',@new_id);
-END
+END//
+
+DELIMITER ;
+
 
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

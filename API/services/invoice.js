@@ -19,25 +19,38 @@ async function getMultiple(page = 1){
 }
 
 async function create(invoice) {
-  const query_text = `INSERT INTO invoice 
-  (SUMMA_WITHOUT_DISCOUNT, 
-    DISCOUNT, 
-    SUMMA, 
-    CUSTOMER_PHONE, 
-    CUSTOMER_NAME, 
-    COMMENT, 
-    STATUS) 
-  VALUES 
-  (
-    ${invoice.summaWithoutDiscount},
-     ${invoice.discount}, 
-     ${invoice.summa}, 
-     '${invoice.customerPhone}', 
-     '${invoice.customerName}',
-     '${invoice.comment}',
-     ${invoice.status})
-     `;
+  // const query_text = `INSERT INTO invoice 
+  // (SUMMA_WITHOUT_DISCOUNT,
+  //   DISCOUNT,
+  //   SUMMA,
+  //   CUSTOMER_PHONE,
+  //   CUSTOMER_NAME,
+  //   COMMENT,
+  //   STATUS)
+  // VALUES
+  // (
+  //   ${invoice.summaWithoutDiscount},
+  //    ${invoice.discount},
+  //    ${invoice.summa},
+  //    '${invoice.customerPhone}',
+  //    '${invoice.customerName}',
+  //    '${invoice.comment}',
+  //    ${invoice.status})
+  //    `;
  
+  const query_text = `INSERT INTO invoice 
+  (CUSTOMER_PHONE,
+    CUSTOMER_NAME,
+    COMMENT)
+  VALUES
+  (
+     '${invoice.customerPhone}',
+     '${invoice.customerName}',
+     '${invoice.comment}'
+     )`;
+
+
+
   //console.log(`query_text=${query_text}`);
   
   const result = await db.query(query_text);

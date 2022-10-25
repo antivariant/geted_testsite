@@ -11,13 +11,13 @@ const films = require('../services/film');
  *      properties:
  *        id:
  *          type: integer
- *          description: Movie internal ID
+ *          description: Внутрішній ID фільму
  *        title:
  *          type: string
- *          description: Movie title
+ *          description: Назва фільму
  *        year:
  *          type: integer
- *          description: Year
+ *          description: Рік
  *      example:
  *        id: 438488
  *        title: Terminator Salvation
@@ -28,7 +28,7 @@ const films = require('../services/film');
  * @swagger
  * tags:
  *  name: Films
- *  description: Films
+ *  description: Фільми
  */
 
 
@@ -36,7 +36,7 @@ const films = require('../services/film');
  * @swagger
  * /films:
  *    get:
- *      summary: Get all films
+ *      summary: Список всіх фільмів
  *      tags: [Films]
  *      parameters:
  *        - in: query
@@ -44,10 +44,10 @@ const films = require('../services/film');
  *          schema:
  *            type: integer
  *          required: false
- *          description: Page number
+ *          description: Номер сторінки
  *      responses:
  *        200:
- *          description: A successful response
+ *          description: Успішний запит
  *          content:
  *             application/json:
  *               schema:

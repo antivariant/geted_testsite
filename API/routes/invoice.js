@@ -10,33 +10,33 @@ const invoice = require('../services/invoice');
  *       type: object
  *       properties:
  *         summaWithoutDiscount: 
- *           type: number
- *           description: Documnet amount before disount
+ *           type: decimal
+ *           description: Сума документа до застосування знижки
  *         discount:
- *           type: number
- *           description: Dicount amount 
+ *           type: decimal
+ *           description: Сума знижки 
  *         summa:
- *           type: number
- *           description: Amount to pay
+ *           type: decimal
+ *           description: Сума до сплати
  *         customerPhone:
  *           type: string
- *           description: Customer phone number 
+ *           description: Номер телефону покупця 
  *         customerName:
  *           type: string
- *           description: Customer name
+ *           description: Ім'я покупця
  *         comment:
  *           type: string
- *           description: Custormer comment to invoice  
+ *           description: Коментар покупця до замовлення
  *         status:
  *           type: integer
  *           description: 0 - по-умолчанию/в процессе заказа, 1 - подтвержден, 2 - выполнен) 
  *       example:
- *         summaWithoutDiscount: 1000
- *         discount: 10
- *         summa: 990
+ *         summaWithoutDiscount: "1000.00"
+ *         discount: "10.00"
+ *         summa: "990.00"
  *         customerPhone: "+380965939833"
  *         customerName: Igor
- *         comment: Some comment from user
+ *         comment: Якийсь коментар
  *         status: 1
  *   
 */
@@ -45,7 +45,7 @@ const invoice = require('../services/invoice');
  * @swagger
  * tags:
  *  name: Invoices
- *  description: Invoice headers and positions
+ *  description: Замовлення. Заголовок і позиції
  *   
  */
 
@@ -54,7 +54,7 @@ const invoice = require('../services/invoice');
  * @swagger
  * /invoice:
  *   get:
- *     summary: The list of all invoices
+ *     summary: Список всіх замовлень
  *     tags: [Invoices]
  *     parameters:
  *        - in: query
@@ -62,10 +62,10 @@ const invoice = require('../services/invoice');
  *          schema:
  *            type: integer
  *          required: false
- *          description: Page number     
+ *          description: Сторінка     
  *     responses:
  *        200:
- *          description: A successful response
+ *          description: Успішний запит
  *          content:
  *             application/json:
  *               schema:
@@ -95,22 +95,39 @@ router.get('/', async function(req, res, next) {
  * @swagger
  * /invoice:
  *   post:
- *     summary: Adds new invoice.
+ *     summary: Додає нове замовлення
  *     tags: [Invoices]
  *     requestBody:
- *       description: Invoice head
+ *       description: Заголовок замовлення (без позицій)
  *       required: true
  *       content:
  *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Invoice'
+ *           schema: 
+ *             type: object
+ *             properties:
+ *               customerPhone:
+ *                 type: string
+ *                 description: Номер телефону покупця 
+ *               customerName:
+ *                 type: string
+ *                 description: Ім'я покупця
+ *               comment:
+ *                 type: string
+ *                 description: Коментар покупця до замовлення
+ *             example:
+ *               customerPhone: "+380965939833"
+ *               customerName: Igor
+ *               comment: Якийсь коментар
  *     responses:
  *       200:
  *         description: created
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Invoice'
+ *                properties:              
+ *                  message:
+ *                    type: string
+ *                    example: Invoice created successfully
  */
 router.post('/', async function(req, res, next) {
 //  console.log(`invoice request body= ${JSON.stringify(req.body)}`)

@@ -52,7 +52,7 @@ const filmsRouter = require("./routes/film");
 
 app.use("/films", filmsRouter);
 app.use("/invoice", invoiceRouter);
-app.use("/invoice/details", invoiceDetailsRouter);
+app.use("/invoice-details", invoiceDetailsRouter);
 
 
 
