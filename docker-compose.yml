@@ -4,22 +4,13 @@ services:
   db:
     platform: linux/x86_64
     image: mysql:5.7
+    container_name: getmanualqa-gb
     restart: always 
     environment:
       MYSQL_DATABASE: 'db'
-      # So you don't have to use root, but you can if you like
       MYSQL_USER: 'user'
-      # You can use whatever password you like
       MYSQL_PASSWORD: 'password'
-      # Password for root access
       MYSQL_ROOT_PASSWORD: 'password'
-    ports:
-      # <Port exposed> : < MySQL Port running inside container>
-      - '3306:3306'
-    expose:
-      # Opens port 3306 on the container
-      - '3306'
-      # Where our data will be persisted
     volumes:
       - my-db:/var/lib/mysql
       - ./db/mysql-dump:/docker-entrypoint-initdb.d
@@ -28,33 +19,54 @@ services:
     build:
       dockerfile: Dockerfile
       context: './API/'
-    ports:
-      - '8080:8080'
+    container_name: getmanualqa-api
+    environment:
+      - URL_PRODUCTION=http://getmanualqa.com
     depends_on:
       - db
     volumes:
       - ./API/:/usr/app/
-      - ./backend/:/usr/app/
-      - /usr/app/node_modules  
 # Backend
   backend:
     build:
       dockerfile: Dockerfile
       context: './backend/'
-    ports:
-      - '8000:80'
+    container_name: getmanualqa-backend
     volumes:
       - ./backend:/var/www/html/
     restart: always
 # PhpMyAdmin
   phpmyadmin:
     image: phpmyadmin
-    ports:
-      - '8020:80'
+    container_name: getmanualqa-phpmyadmin
+    # ports:
+    #   - '8020:80'
+    restart: unless-stopped
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: 'db'
+      MYSQL_ROOT_PASSWORD: 'password'
+      # - UPLOAD_LIMIT=1024M
+      # - MEMORY_LIMIT=1024M
+      # - MAX_EXECUTION_TIME=300 
     depends_on:
       - db
     links:
       - db:db
+# nginx
+  nginx:
+    image: nginx:stable-alpine
+    container_name: getmanualqa-nginx
+    # environment:
+    #   - NGINX_HOST=getmanualqa.com
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx/nginx.conf.prod:/etc/nginx/conf.d/nginx.conf
+    depends_on: 
+     - backend
+     - api
+   
 # Names our volume
 volumes:
   my-db:

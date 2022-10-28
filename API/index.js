@@ -21,18 +21,14 @@ const swaggerOptions = {
                 name: "Igor Gromov",
                 url: "http://www.linkedin.com/in/igor-gromov-15043883",
                 email: "gromov.i@oulook.com"
-            },
-            servers: [
-                {
-                    url: "http://localhost:8080",
-                    description: "Test Server"
-                },
-                {
-                    url: "http://antivariant.com",
-                    description: "Production server"    
-                }
-            ]
-        }
+            }
+        },
+        servers: [
+            {
+                url: `${process.env.URL_PRODUCTION}/api/`,
+                description: "Production server"
+            }
+        ]
     },
     apis: ["./routes/*.js"]
 };
@@ -45,14 +41,17 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 const config = require('./config');
 
-const invoiceRouter = require("./routes/invoice");
-const invoiceDetailsRouter = require("./routes/invoiceDetails");
+const orderRouter = require("./routes/order");
+const orderDetailsRouter = require("./routes/orderDetails");
 const filmsRouter = require("./routes/film");
+const usersRouter = require("./routes/user");
+const pricelistRouter = require("./routes/pricelist");
 
-
-app.use("/films", filmsRouter);
-app.use("/invoice", invoiceRouter);
-app.use("/invoice-details", invoiceDetailsRouter);
+app.use("/user", usersRouter);
+app.use("/film", filmsRouter);
+app.use("/order", orderRouter);
+app.use("/order-details", orderDetailsRouter);
+app.use("/pricelist", pricelistRouter);
 
 
 

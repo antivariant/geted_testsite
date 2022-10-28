@@ -1,4 +1,4 @@
-FROM node:latest as nodejs
+FROM node:19.0.0-alpine3.15 as nodejs
 WORKDIR "/usr/app"
 COPY ./package.json ./
 RUN npm install

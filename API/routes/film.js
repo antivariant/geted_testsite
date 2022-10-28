@@ -34,7 +34,7 @@ const films = require('../services/film');
 
 /** 
  * @swagger
- * /films:
+ * /film:
  *    get:
  *      summary: Список всіх фільмів
  *      tags: [Films]
