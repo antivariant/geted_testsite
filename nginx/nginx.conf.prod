@@ -1,0 +1,21 @@
+server {
+    
+    listen 80;
+    server_name getmanualqa.com;   
+    
+    location / {
+        proxy_pass http://backend;
+    }
+
+    location /api/ {
+        proxy_pass http://api:8080;
+        rewrite ^/api/(.*) /$1 break;
+    }
+
+    location /db/ {
+        proxy_pass http://phpmyadmin;
+        rewrite ^/db/(.*) /$1 break;
+    }
+
+}
+
