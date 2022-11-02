@@ -1,74 +1,12 @@
 version: '3.3'
 services:
-# Database
-  db:
-#    platform: linux/x86_64
-    image: mysql:5.7
-    container_name: getmanualqa-gb
-    restart: always 
-    environment:
-      MYSQL_DATABASE: 'db'
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'password'
-      MYSQL_ROOT_PASSWORD: 'password'
-    volumes:
-      - my-db:/var/lib/mysql
-      - ./db/mysql-dump:/docker-entrypoint-initdb.d
 # Nodejs API
   api:
     build:
       dockerfile: Dockerfile-production
-      context: './API/'
-    container_name: getmanualqa-api
     environment:
       - URL_PRODUCTION=http://antivariantum.com
-    depends_on:
-      - db
-    volumes:
-      - ./API/:/usr/app/
-# Backend
-  backend:
-    build:
-      dockerfile: Dockerfile
-      context: './backend/'
-    container_name: getmanualqa-backend
-    volumes:
-      - ./backend:/var/www/html/
-    restart: always
-# PhpMyAdmin
-  phpmyadmin:
-    image: phpmyadmin
-    container_name: getmanualqa-phpmyadmin
-    # ports:
-    #   - '8020:80'
-    restart: unless-stopped
-    environment:
-      PMA_ARBITRARY: 1
-      PMA_HOST: 'db'
-      MYSQL_ROOT_PASSWORD: 'password'
-      # - UPLOAD_LIMIT=1024M
-      # - MEMORY_LIMIT=1024M
-      # - MAX_EXECUTION_TIME=300 
-    depends_on:
-      - db
-    links:
-      - db:db
 # nginx
   nginx:
-    image: nginx:stable-alpine
-    container_name: getmanualqa-nginx
     environment:
       - NGINX_HOST=antivariantum.com
-    ports:
-      - '80:80'
-    volumes:
-      #- ./nginx/nginx.conf.prod:/etc/nginx/conf.d/nginx.conf
-      - ./nginx/nginx.conf.template:/etc/nginx/templates/default.conf.template
-    depends_on: 
-     - backend
-     - api
-   
-# Names our volume
-volumes:
-  my-db:
-  docker-entrypoint-initdb.d:
