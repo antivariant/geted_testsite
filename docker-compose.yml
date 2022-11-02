@@ -20,6 +20,7 @@ services:
       dockerfile: Dockerfile
       context: './API/'
     container_name: getmanualqa-api
+    restart: always 
     environment:
       - URL_PRODUCTION=http://getmanualqa.com
     depends_on:
