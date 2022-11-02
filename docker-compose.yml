@@ -5,12 +5,12 @@ services:
 #    platform: linux/x86_64
     image: mysql:5.7
     container_name: getmanualqa-gb
-    restart: always 
+    restart: always
     environment:
       MYSQL_DATABASE: 'db'
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'password'
-      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_USER: 'admin'
+      MYSQL_PASSWORD: 'adminpass'
+      MYSQL_ROOT_PASSWORD: 'Pa$$word'
     volumes:
       - my-db:/var/lib/mysql
       - ./db/mysql-dump:/docker-entrypoint-initdb.d
@@ -46,7 +46,7 @@ services:
     environment:
       PMA_ARBITRARY: 1
       PMA_HOST: 'db'
-      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'Pa$$word'
       # - UPLOAD_LIMIT=1024M
       # - MEMORY_LIMIT=1024M
       # - MAX_EXECUTION_TIME=300 
