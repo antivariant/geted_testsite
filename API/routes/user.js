@@ -8,10 +8,7 @@ const user = require('../services/user');
  *   schemas:
  *     User:
  *       type: object
- *       properties:
- *         id:
- *           type: integer
- *           description: Внутрішній ID користувача  
+ *       properties: 
  *         name:
  *           type: string
  *           description: Ім'я покупця

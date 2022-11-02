@@ -21,7 +21,7 @@ services:
       context: './API/'
     container_name: getmanualqa-api
     environment:
-      - URL_PRODUCTION=http://getmanualqa.com
+      - URL_PRODUCTION=http://antivariantum.com
     depends_on:
       - db
     volumes:
