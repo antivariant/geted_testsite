@@ -4,7 +4,7 @@ services:
   db:
 #    platform: linux/x86_64
     image: mysql:5.7
-    container_name: getmanualqa-gb
+    container_name: getmanualqa-db
     restart: always
     environment:
       MYSQL_DATABASE: 'db'
@@ -44,9 +44,10 @@ services:
     #   - '8020:80'
     restart: unless-stopped
     environment:
-      PMA_ARBITRARY: 1
-      PMA_HOST: 'db'
-      MYSQL_ROOT_PASSWORD: 'Pa$$word'
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - MYSQL_ROOT_PASSWORD=Pa$$word
+      - PMA_ABSOLUTE_URI=http://antivariantum.local/db/
       # - UPLOAD_LIMIT=1024M
       # - MEMORY_LIMIT=1024M
       # - MAX_EXECUTION_TIME=300 
@@ -54,7 +55,7 @@ services:
       - db
     links:
       - db:db
-# nginx
+  # nginx
   nginx:
     image: nginx:stable-alpine
     container_name: getmanualqa-nginx
