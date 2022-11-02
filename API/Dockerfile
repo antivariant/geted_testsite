@@ -1,6 +1,6 @@
 FROM node:19.0.0-alpine3.15 as nodejs
 WORKDIR "/usr/app"
-COPY ./package.json ./
+COPY ./package.json ./src
 RUN npm install
 COPY . .
 CMD ["npm", "run", "dev"]
