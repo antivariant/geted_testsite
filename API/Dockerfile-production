@@ -1,8 +1,10 @@
 FROM node:19.0.0-alpine3.15 as nodejs
 WORKDIR "/usr/app"
-COPY ./package.json ./src
+COPY ./package.json ./
 RUN npm install
 COPY . .
+RUN npm run build
+RUN npm install -g serve
 CMD ["npm", "run", "start"]
 
 # FROM php:7.4-cli
