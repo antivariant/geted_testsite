@@ -54,8 +54,6 @@ services:
       - db
     links:
       - db:db
-    volumes:
-      - /phpmyadmin/config.inc.php:/etc/mysql/conf.d
 # nginx
   nginx:
     image: nginx:stable-alpine

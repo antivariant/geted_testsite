@@ -13,4 +13,4 @@ services:
 # db
   db:
     environment:
-      PMA_ABSOLUTE_URI:http://antivariantum.com/db/
+      - PMA_ABSOLUTE_URI=http://antivariantum.com/db/
