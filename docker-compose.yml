@@ -21,7 +21,7 @@ services:
       context: './API/'
     container_name: getmanualqa-api
     environment:
-      - URL_PRODUCTION=http://antivariantum.com
+      - URL_PRODUCTION=http://getmanualqa.com
     depends_on:
       - db
     volumes:
@@ -57,12 +57,13 @@ services:
   nginx:
     image: nginx:stable-alpine
     container_name: getmanualqa-nginx
-    # environment:
-    #   - NGINX_HOST=getmanualqa.com
+    environment:
+      - NGINX_HOST=getmanualqa.com
     ports:
       - '80:80'
     volumes:
-      - ./nginx/nginx.conf.prod:/etc/nginx/conf.d/nginx.conf
+      #- ./nginx/nginx.conf.prod:/etc/nginx/conf.d/nginx.conf
+      - ./nginx/nginx.conf.template:/etc/nginx/templates/default.conf.template
     depends_on: 
      - backend
      - api
