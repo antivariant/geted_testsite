@@ -22,7 +22,7 @@ services:
     container_name: getmanualqa-api
     restart: always 
     environment:
-      - URL_PRODUCTION=http://getmanualqa.com
+      - URL_PRODUCTION=http://antivariantum.local
     depends_on:
       - db
     volumes:
@@ -59,7 +59,7 @@ services:
     image: nginx:stable-alpine
     container_name: getmanualqa-nginx
     environment:
-      - NGINX_HOST=getmanualqa.com
+      - NGINX_HOST=antivariantum.local
     ports:
       - '80:80'
     volumes:
