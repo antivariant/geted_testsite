@@ -12,5 +12,7 @@ services:
       - NGINX_HOST=antivariantum.com
 # db
   db:
-    environment:
-      - PMA_ABSOLUTE_URI=http://antivariantum.com/db/
+    # environment:
+    #   - PMA_ABSOLUTE_URI=http://antivariantum.com/db/
+    volumes:
+    - /phpmyadmin/prodconfig.inc.php:/etc/mysql/conf.d
