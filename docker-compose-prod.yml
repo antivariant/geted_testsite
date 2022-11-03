@@ -14,3 +14,4 @@ services:
   phpmyadmin:
     environment:
       - PMA_ABSOLUTE_URI=http://antivariantum.com/db/
+      - PMA_ARBITRARY=0
