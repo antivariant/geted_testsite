@@ -57,6 +57,38 @@ services:
       - db
     links:
       - db:db
+  #mongoDB
+  mongodb:
+    image: mongo:latest
+    container_name: getmanualqa-mongodb
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongouser
+      - MONGO_INITDB_ROOT_PASSWORD=mongopass
+      - MONGO_INITDB_DATABASE=test
+    ports:
+      - 27017:27017
+
+  #mongo-express
+  mongo-express:
+    image: mongo-express:latest
+    container_name: getmanualqa-mongo-express
+    restart: always
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+      - ME_CONFIG_MONGODB_AUTH_DATABASE=admin
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=mongouser
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=mongopass
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=adminpass
+      - ME_CONFIG_SITE_BASEURL=/mongodb/
+    # ports:
+    #   - 80:8081
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
   # nginx
   nginx:
     image: nginx:stable-alpine

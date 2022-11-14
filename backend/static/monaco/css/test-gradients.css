@@ -1,0 +1,34 @@
+.lingrad1{
+   width:200px;
+   height:200px;
+   background: repeating-linear-gradient(135deg, red 1em, black 1.1em, black 1.3em);
+   text-align: center;
+   vertical-align: middle;
+   display: table-cell;
+   border: 1px solid red;
+}
+
+.radgrad1{
+    background: radial-gradient(black,white);
+    width:300px;
+    height:400px;
+    border: 1px solid red;
+}
+
+.filtered{
+    filter:sepia(60%);
+}
+
+.a {
+    border: 1px solid red;
+    width: 400px;
+    height: 400px;
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    background-color: red;
+    /* background: linear-gradient(45deg, rgba(0, 0, 0, 0) 49.9%, red 60%, rgba(0, 0, 0, 0) 60%) fixed, linear-gradient(45deg, red 10%, rgba(0, 0, 0, 0) 10%) fixed;
+    background-size: 0.5em 0.5em; */
+    box-shadow: .5em .5em rgb(200, 0, 0),
+    1em 1em rgb(100,0,0);
+  }

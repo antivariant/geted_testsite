@@ -1,0 +1,58 @@
+body {
+  background-color: black;
+  color: white;
+}
+.a {
+  border: 1px solid red;
+  width: 200px;
+  height: 200px;
+  display: inline;
+  margin: 10px;
+  padding: 10px;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0) 49.9%, red 60%, rgba(0, 0, 0, 0) 60%) fixed, linear-gradient(45deg, red 10%, rgba(0, 0, 0, 0) 10%) fixed;
+  background-size: 0.5em 0.5em;
+  float: right;
+}
+.b {
+  border: 1px solid blue;
+  width: 200px;
+  height: 200px;
+  display: inline;
+  margin: 10px;
+  padding: 10px;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0) 49.9%, blue 60%, rgba(0, 0, 0, 0) 60%) fixed, linear-gradient(45deg, blue 10%, rgba(0, 0, 0, 0) 10%) fixed;
+  background-size: 0.5em 0.5em;
+  float: right;
+}
+.c {
+  border: 1px solid green;
+  width: 200px;
+  height: 200px;
+  display: inline;
+  margin: 10px;
+  padding: 10px;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0) 49.9%, green 60%, rgba(0, 0, 0, 0) 60%) fixed, linear-gradient(45deg, green 10%, rgba(0, 0, 0, 0) 10%) fixed;
+  background-size: 0.5em 0.5em;
+  float: right;
+}
+p {
+  clear: left;
+}
+.d {
+  clear: right;
+}
+.f {
+  width: 200px;
+  height: 200px;
+  border: 1px solid red;
+}
+.g {
+  width: 200px;
+  height: 200px;
+  border: 1px solid blue;
+  left: 10px;
+  top: 10px;
+  resize:both;
+  display: block;
+  overflow: auto;
+}
