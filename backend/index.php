@@ -11,6 +11,20 @@ curl_setopt($curl, CURLOPT_HTTPHEADER, [
 
 $response = curl_exec($curl);
 curl_close($curl);
-echo $response;
+ //echo $response;
+
+$json = json_decode($response,true);
+foreach ($json['data'] as $film) {
+    // echo '<div class="product">';
+    // echo '<div class="film_id"><span class="label">ID:</span>' . $film['id'] .'</div>';
+    // echo '<div class="film_title"><span class="label">Title:</span>' . $film['title'] .'</div>';
+    // echo '<div class="film_year"><span class="label">Year:</span>' . $film['year'] .'</div>';
+    // echo '<div class="film_actors"><span class="label">Actors:</span>' . $film['name'] .'</div>';
+    // echo '</div>';
+    // echo '</br>';
+    echo '<form>';
+    
+    echo '</form>';
+}
 
 ?>

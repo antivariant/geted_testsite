@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script lang="javascript">
+        function fn1(){
+            var randomHue = Math.floor(Math.random()*360);
+            var randomHSLAColor = `hsla(${randomHue},100%,50%, 0.2)`;
+            var element = document.getElementById("button1");
+            element.setAttribute("style",`background-color:${randomHSLAColor}`);
+        }
+
+        function fn2(){
+            var randomHue = Math.floor(Math.random()*360);
+            var randomHSLAColor = `hsla(${randomHue},100%,50%, 0.2)`;
+            var element = document.getElementById("button2");
+            elenent.setAttribute("style",`background-color:${randomHSLAColor}`);
+        }
+    </script>
+</head>
+<body>
+    <h1>Заняття 9</h1>
+    <h2>Тестуємі кнопки</h2>
+    <button id="button1" type="button" onclick="fn1()">Кнопка 1</button>
+    <button id="button2" type="button" onclick="fn2()">Кнопка 2</button>
+    <h3>Вимога</h3>
+    <p>Кнопка 1 та Кнопка 2 при натисканні повинні змінювати свій колір на випадковий</p>
+    <h2>Завдання 1</h2>
+    <h3>Підготовка проекта в TestRail</h3>
+    <ol>
+        <li>Додайте в TestRail новий проект</li>
+        <li>Додайте milestone</li>
+    </ol>
+    <h2>Завдання 2</h2>
+    <ol>
+        <li>Додайте кейс про зміну кольора кнопок. Окремо для кожної.</li>
+    </ol>
+    <h2>Завдання 3</h2>
+    <h3>Провести тестування</h3>
+    <ol>
+        <li>Додайте TestRun, включить обидва теста</li>
+        <li>Протестуйте</li>
+        <li>Сформуйте звіт Results: Comparison For Cases</li>
+    </ol>
+    <h2>Додаткове задання із *</h2>
+    <p>Аналізуючи текст помилки і посилання на строку з помилкою в Console DevTools,
+       спробуйте знайти помилку. Підказка: обидві javascript функції fn1() і fn2() однакові. 
+    </p>
+</body>
+</html>
