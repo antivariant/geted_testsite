@@ -19,7 +19,6 @@ const user = require('../services/user');
  *           type: string
  *           description: Пароль покупця (тимчасово у відкритій формі)
  *       example:
- *         id: 1
  *         name: "Igor"
  *         email: "antivariantum@gmail.com" 
  *         password: "12345" 
