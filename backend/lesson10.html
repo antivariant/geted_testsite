@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" value="noindex, nofollow">
+    <title>Lesson10</title>    
+</head>
+<body>
+    <h1>Заняття 10</h1>
+    <div>  
+        <img src="https://upload.wikimedia.org/wikipedia/uk/archive/9/95/20140826093231%21Terminator-salvation-poster.jpg" alt="">  
+        <form id="addForm">
+            <button type="submit">Купити</button>
+        </form>
+        <script lang="javascript">
+            const addForm = document.getElementById("addForm");
+
+            addForm.addEventListener("submit", (e)=>{
+                e.preventDefault();
+                fetch("api/order-details",
+                {
+                    method:'POST',
+                    body: JSON.stringify({
+                        "orderId": 1,
+                        "videoId": 438488
+                    }),
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                        },
+                })
+                .then((response)=>response.json())
+                .then((data)=>console.log(data));
+            });
+        </script>
+    </div>
+    <p>При натисканні кнопки "Купити" товар додається до кошика.
+        Проаналізуйте запит /api/order-details який додає товар до кошика
+    і дайте відповідь на наступні питання:</p>
+    <h2>Питання</h2>
+    <ol>
+        <li>Який метод використовується: GET або POST? (зверінть увагу що в DevTool Type 
+            не завжди дорівнює Method)</li>
+        <li>В якому форматі тіло запиту: JSON або XML?</li>
+        <li>Який статус повернул запит?</li>
+        <li>Що означає цей статус?</li>
+    </ol>
+
+</body>
+</html>
