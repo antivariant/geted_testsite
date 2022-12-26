@@ -1,12 +1,14 @@
 const express = require('express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded(
     { extended: true }
 ));
+app.use(cors()); //enable all CORS requests
 
 // https://swagger.io/specification/#openapi-object
 // https://swagger.io/specification/#infoObject
